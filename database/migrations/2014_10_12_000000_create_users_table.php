@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('noteurl');
             $table->string('password');
+            $table->integer('article_count')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

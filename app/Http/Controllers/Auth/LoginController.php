@@ -37,4 +37,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function authenticated(\Illuminate\Http\Request $request, $user)
+    {
+        //ログイン後の処理
+        
+
+        // ログイン後のリダイレクト
+        return redirect()->intended($this->redirectPath());
+    }
 }
