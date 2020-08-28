@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Rules\NoteURL;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -50,7 +51,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'noteurl' => ['required', 'string', 'max:20'],
+            'noteurl' => ['required', 'string', 'min:3', 'max:16', 'regex:/^[0-9a-z_]*$/', 'unique:users,noteurl', new NoteURL],
             'password' => ['required', 'string', 'min:8', 'max:16', 'confirmed'],
         ]);
     }

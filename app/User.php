@@ -43,8 +43,20 @@ class User extends Authenticatable
         $posts = json_decode($posts, true);
         $count = $posts['data']['noteCount'];
         $user = User::find(Auth::user()->id);
-        
-        $user->fill(['article_count'=>$count])->update();
+
+        $user->fill(['article_count' => $count])->update();
         return $count;
+    }
+
+    public function validateurl($name)
+    {
+        $url = 'https://note.com/api/v2/creators/' . $name;
+        $client = new Client();
+        $response = $client->request("GET", $url, array(
+            "http_errors" => false,
+        ));
+        $posts = $response->getStatusCode();
+
+        return null;
     }
 }
