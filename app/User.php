@@ -48,15 +48,4 @@ class User extends Authenticatable
         return $count;
     }
 
-    public function validateurl($name)
-    {
-        $url = 'https://note.com/api/v2/creators/' . $name;
-        $client = new Client();
-        $response = $client->request("GET", $url, array(
-            "http_errors" => false,
-        ));
-        $posts = $response->getStatusCode();
-
-        return null;
-    }
 }

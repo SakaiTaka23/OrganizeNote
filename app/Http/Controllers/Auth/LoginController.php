@@ -42,4 +42,13 @@ class LoginController extends Controller
     {
         return 'noteurl';
     }
+
+    protected function authenticated(\Illuminate\Http\Request $request, $user)
+    {
+        // ここに追加したい処理を書く
+        $article = new \App\Article();
+        $article->login_check($user);
+        // ログイン後のリダイレクト
+        return redirect()->intended($this->redirectPath());
+    }
 }

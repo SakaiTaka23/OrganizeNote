@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,10 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $article = new Article();
-        // $article->first_time('note_fumi');
-        // $user = new User();
-        // $user ->validateurl('note_fumi');
         return view('home');
     }
 }
