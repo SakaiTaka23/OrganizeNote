@@ -15,6 +15,10 @@ class Article extends Model
         'title', 'user_id', 'key', 'created_at',
     ];
 
+    protected $dates = [
+        'created_at',
+    ];
+
     public $timestamps = false;
 
     public function users()
@@ -24,12 +28,12 @@ class Article extends Model
 
     public function contents()
     {
-        return $this->hasMany('App\Content');
+        return $this->belongsToMany('App\Content');
     }
 
     public function tags()
     {
-        return $this->hasMany('App\Tag');
+        return $this->belongsToMany('App\Tag');
     }
 
     public function first_time($name)

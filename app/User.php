@@ -29,6 +29,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function articles()
     {
         return $this->hasMany('App\Article');
