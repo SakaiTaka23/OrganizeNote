@@ -40,7 +40,7 @@ class Article extends Model
         $page = intval($count / 6);
         if ($page % 6 != 0) $page++;
 
-        for ($page; $page >= 0; $page--) {
+        for ($page; $page >= 1; $page--) {
             $url = 'https://note.com/api/v2/creators/' . $name . '/contents?kind=note&page=' . $page;
             $client = new Client();
             $response = $client->request("GET", $url);
@@ -106,7 +106,7 @@ class Article extends Model
 
             for ($i = 0; $i < count($posts); $i++) {
                 $anarticle = $posts[$i];
-                if ($last_date <= $anarticle['publishAt']) {
+                if ($last_date >= $anarticle['publishAt']) {
                     $found = true;
                     break;
                 }

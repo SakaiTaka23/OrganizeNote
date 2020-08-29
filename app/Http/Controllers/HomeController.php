@@ -26,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // $article = new Article();
+        // $article->login_check('note_fumi');
         return view('home');
     }
 }
