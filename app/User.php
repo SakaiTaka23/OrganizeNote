@@ -2,9 +2,10 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'noteurl', 'password', 'article_count',
     ];
 
     /**
@@ -28,12 +29,23 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function articles()
+    {
+        return $this->hasMany('App\Article');
+    }
+
+    public function updateCount($name)
+    {
+        $url = 'https://note.com/api/v2/creators/' . $name;
+        $client = new Client();
+        $response = $client->request("GET", $url);
+        $posts = $response->getBody();
+        $posts = json_decode($posts, true);
+        $count = $posts['data']['noteCount'];
+        $user = User::find(Auth::user()->id);
+
+        $user->fill(['article_count' => $count])->update();
+        return $count;
+    }
+
 }
