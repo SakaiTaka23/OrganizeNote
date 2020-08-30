@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use App\User;
 
 class Article extends Model
 {
@@ -69,7 +69,7 @@ class Article extends Model
                     $hashtags = $anarticle['hashtags'];
                     for ($j = 0; $j < count($anarticle['hashtags']); $j++) {
                         $tag = $hashtags[$j]['hashtag']['name'];
-                        $tags = Tag::firstOrCreate(['name' => $tag,'user_id'=>$auth->id]);
+                        $tags = Tag::firstOrCreate(['name' => $tag, 'user_id' => $auth->id]);
                         $tags->articles()->attach($article);
                     }
                 }
@@ -78,7 +78,7 @@ class Article extends Model
                     $contentstable = $anarticle['additionalAttr']['index'];
                     for ($j = 0; $j < count($contentstable); $j++) {
                         $content = $contentstable[$j]['body'];
-                        $contents = Content::firstOrCreate(['name' => $content,'user_id'=>$auth->id]);
+                        $contents = Content::firstOrCreate(['name' => $content, 'user_id' => $auth->id]);
                         $contents->articles()->attach($article);
                     }
                 }
@@ -153,7 +153,7 @@ class Article extends Model
                     $hashtags = $anarticle['hashtags'];
                     for ($j = 0; $j < count($anarticle['hashtags']); $j++) {
                         $tag = $hashtags[$j]['hashtag']['name'];
-                        $tags = Tag::firstOrCreate(['name' => $tag,'user_id'=>$auth->id]);
+                        $tags = Tag::firstOrCreate(['name' => $tag, 'user_id' => $auth->id]);
                         $tags->articles()->attach($article);
                     }
                 }
@@ -162,12 +162,22 @@ class Article extends Model
                     $contentstable = $anarticle['additionalAttr']['index'];
                     for ($j = 0; $j < count($contentstable); $j++) {
                         $content = $contentstable[$j]['body'];
-                        $contents = Content::firstOrCreate(['name' => $content,'user_id'=>$auth->id]);
+                        $contents = Content::firstOrCreate(['name' => $content, 'user_id' => $auth->id]);
                         $contents->articles()->attach($article);
                     }
                 }
             }
             sleep(1);
         }
+    }
+
+    public function getIndex()
+    {
+        return Article::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+    }
+
+    public function findArticle($request)
+    {
+        return Article::where('user_id', Auth::user()->id)->where('title', 'like', '%' . $request->title . '%')->whereBetween('created_at',[$request->datefrom,$request->dateto])->orderBy('created_at', 'desc')->paginate(10);
     }
 }
