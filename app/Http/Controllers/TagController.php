@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Article;
-use Illuminate\Support\Facades\DB;
+use App\Tag;
 
 
 class TagController extends Controller
@@ -17,10 +17,8 @@ class TagController extends Controller
 
     public function index()
     {
-        //$tags = DB::table('articles')->where('user_id',Auth::user()->id)->orderBy('created_at','desc');
-        $tags = Article::where('user_id',Auth::user()->id)->with('tags')->first();
+        $tags = Tag::select('name')->where('user_id',Auth::user()->id)->get();
     
-        dd($tags);
-        return view('index', compact('articles'));
+        return view('user.tag', compact('tags'));
     }
 }

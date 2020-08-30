@@ -69,7 +69,7 @@ class Article extends Model
                     $hashtags = $anarticle['hashtags'];
                     for ($j = 0; $j < count($anarticle['hashtags']); $j++) {
                         $tag = $hashtags[$j]['hashtag']['name'];
-                        $tags = Tag::firstOrCreate(['name' => $tag]);
+                        $tags = Tag::firstOrCreate(['name' => $tag,'user_id'=>$auth->id]);
                         $tags->articles()->attach($article);
                     }
                 }
@@ -78,7 +78,7 @@ class Article extends Model
                     $contentstable = $anarticle['additionalAttr']['index'];
                     for ($j = 0; $j < count($contentstable); $j++) {
                         $content = $contentstable[$j]['body'];
-                        $contents = Content::firstOrCreate(['name' => $content]);
+                        $contents = Content::firstOrCreate(['name' => $content,'user_id'=>$auth->id]);
                         $contents->articles()->attach($article);
                     }
                 }
@@ -153,7 +153,7 @@ class Article extends Model
                     $hashtags = $anarticle['hashtags'];
                     for ($j = 0; $j < count($anarticle['hashtags']); $j++) {
                         $tag = $hashtags[$j]['hashtag']['name'];
-                        $tags = Tag::firstOrCreate(['name' => $tag]);
+                        $tags = Tag::firstOrCreate(['name' => $tag,'user_id'=>$auth->id]);
                         $tags->articles()->attach($article);
                     }
                 }
@@ -162,7 +162,7 @@ class Article extends Model
                     $contentstable = $anarticle['additionalAttr']['index'];
                     for ($j = 0; $j < count($contentstable); $j++) {
                         $content = $contentstable[$j]['body'];
-                        $contents = Content::firstOrCreate(['name' => $content]);
+                        $contents = Content::firstOrCreate(['name' => $content,'user_id'=>$auth->id]);
                         $contents->articles()->attach($article);
                     }
                 }

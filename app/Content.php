@@ -8,7 +8,7 @@ class Content extends Model
 {
 
     protected $fillable = [
-        'name',
+        'name','user_id',
     ];
 
     public $timestamps = false;
@@ -16,5 +16,10 @@ class Content extends Model
     public function articles()
     {
         return $this->belongsToMany('App\Article');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo('App\User');
     }
 }
