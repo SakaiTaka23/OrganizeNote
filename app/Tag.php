@@ -9,7 +9,7 @@ class Tag extends Model
 {
 
     protected $fillable = [
-        'name','user_id',
+        'name', 'user_id',
     ];
 
     public $timestamps = false;
@@ -26,19 +26,20 @@ class Tag extends Model
 
     public function getTags()
     {
-        return Tag::select('id','name')->where('user_id', Auth::user()->id)->orderBy('name','asc')->paginate(20);
+        $tags = Tag::select('id', 'name')->where('user_id', Auth::user()->id)->withCount('articles')->orderBy('articles_count', 'desc')->orderBy('name', 'asc')->paginate(20);
+        return $tags;
     }
 
     public function getTagName($id)
     {
-        $name =  Tag::select('name')->where('id',$id)->get();
+        $name =  Tag::select('name')->where('id', $id)->get();
         $name = $name[0]->name;
         return $name;
     }
 
     public function getArticles($id)
     {
-        $articles =  Tag::with('articles')->where('user_id',Auth::user()->id)->where('id',$id)->orderBy('name','asc')->paginate(10);
+        $articles =  Tag::with('articles')->where('user_id', Auth::user()->id)->where('id', $id)->orderBy('name', 'asc')->get();
         $articles = $articles[0]['articles'];
         return $articles;
     }

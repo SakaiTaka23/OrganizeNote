@@ -173,7 +173,7 @@ class Article extends Model
 
     public function getIndex()
     {
-        return Article::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+        return Article::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(30);
     }
 
     public function findArticle($request)
@@ -188,7 +188,7 @@ class Article extends Model
         }
 
         $articles = Article::where('user_id', Auth::user()->id)->where('title', 'like', '%' . $request->title . '%');
-        $articles = $articles->whereBetween('created_at', [$from, $to])->orderBy('created_at', 'desc')->paginate(10);
+        $articles = $articles->whereBetween('created_at', [$from, $to])->orderBy('created_at', 'desc')->paginate(30);
         return $articles;
     }
 }

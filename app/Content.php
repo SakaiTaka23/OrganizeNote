@@ -26,11 +26,11 @@ class Content extends Model
 
     public function getRandomContents()
     {
-        return Content::where('user_id', Auth::user()->id)->inRandomOrder()->with('articles')->paginate(10);
+        return Content::where('user_id', Auth::user()->id)->inRandomOrder()->with('articles')->paginate(30);
     }
 
     public function findContents($request)
     {
-        return Content::where('user_id', Auth::user()->id)->with('articles')->where('name', 'like', '%' . $request->content . '%')->orderBy('name','asc')->paginate(10);
+        return Content::where('user_id', Auth::user()->id)->with('articles')->where('name', 'like', '%' . $request->content . '%')->orderBy('name','asc')->paginate(30);
     }
 }
