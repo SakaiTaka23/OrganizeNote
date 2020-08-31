@@ -22,8 +22,9 @@ Auth::routes();
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::resource('index', 'ArticleController')->only(['index']);
-    Route::get('search','ArticleController@search')->name('search');
-    Route::get('tag', 'TagController@index')->name('tag');
-    Route::get('profile','UserController@index')->name('profile');
-    Route::get('content','ContentController@index')->name('content');
+    Route::get('searchArticle', 'ArticleController@search')->name('searchArticle');
+    Route::resource('tag', 'TagController')->only(['index','show']);
+    Route::get('profile', 'UserController@index')->name('profile');
+    Route::get('content', 'ContentController@index')->name('content');
+    Route::get('searchContent','ContentController@search')->name('searchContent');
 });

@@ -29,16 +29,20 @@
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
 
-                    <a class="navbar-brand" href="{{ url('user/index') }}">
+                    <a class="navbar-brand" href="{{ route('index.index') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
 
-                    <a class="navbar-brand" href="{{ url('user/tag') }}">
+                    <a class="navbar-brand" href="{{ route('tag.index') }}">
                         tag
                     </a>
 
-                    <a class="navbar-brand" href="{{ url('user/profile') }}">
+                    <a class="navbar-brand" href="{{ route('profile') }}">
                         profile
+                    </a>
+
+                    <a class="navbar-brand" href="{{ route('content') }}">
+                        content
                     </a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse"

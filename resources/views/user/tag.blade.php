@@ -5,6 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
+            <div class="d-flex justify-content-center">
+                {{ $tags->appends(request()->input())->links() }}
+            </div>
+
             <table class="table table-hover mt-2">
                 <thead class="thead-light">
                     <tr>
@@ -14,7 +18,7 @@
                 <tbody>
                     @foreach ($tags as $tag)
                     <tr>
-                        <td>{{ $tag->name }}</td>
+                        <td><a href="{{ route('tag.show',['tag'=>$tag->id]) }}">{{ $tag->name }}</a></td>
                     </tr>
                     @endforeach
                 </tbody>

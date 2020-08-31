@@ -178,6 +178,17 @@ class Article extends Model
 
     public function findArticle($request)
     {
-        return Article::where('user_id', Auth::user()->id)->where('title', 'like', '%' . $request->title . '%')->whereBetween('created_at',[$request->datefrom,$request->dateto])->orderBy('created_at', 'desc')->paginate(10);
+        $from = $request->datefrom;
+        if (!isset($from)) {
+            $from = '2000-01-01';
+        }
+        $to = $request->dateto;
+        if (!isset($to)) {
+            $to = now();
+        }
+
+        $articles = Article::where('user_id', Auth::user()->id)->where('title', 'like', '%' . $request->title . '%');
+        $articles = $articles->whereBetween('created_at', [$from, $to])->orderBy('created_at', 'desc')->paginate(10);
+        return $articles;
     }
 }
