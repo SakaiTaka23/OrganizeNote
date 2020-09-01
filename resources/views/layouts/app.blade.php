@@ -29,6 +29,8 @@
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
 
+                    @auth
+
                     <a class="navbar-brand" href="{{ route('index.index') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
@@ -44,6 +46,8 @@
                     <a class="navbar-brand" href="{{ route('content') }}">
                         content
                     </a>
+
+                    @endauth
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

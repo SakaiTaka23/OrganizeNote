@@ -18,7 +18,9 @@
                 </div>
             </form>
 
-            <a href="{{ route('content') }}">もっと見る</a>
+            <div class="d-flex justify-content-center">
+                {{ $contents->appends(request()->input())->links() }}
+            </div>
 
             <table class="table table-hover mt-2">
                 <thead class="thead-light">
@@ -31,7 +33,7 @@
                 <tbody>
                     @foreach ($contents as $content)
                     @foreach ($content->articles as $article)
-
+                        
                     <tr>
                         <td>{{ $content->name }}</td>
                         <td>{{ $article->title }}</td>

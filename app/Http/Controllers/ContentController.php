@@ -27,6 +27,6 @@ class ContentController extends Controller
         $content = $request->content;
         $contents = new Content();
         $contents = $contents->findContents($request);
-        return view('user.content',compact('noteurl','content','contents'));
+        return view('user.contentsearch',compact('noteurl','content','contents'));
     }
 }

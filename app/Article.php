@@ -98,7 +98,7 @@ class Article extends Model
         $page_max = intval($count / 6);
         if ($page_max % 6 != 0) $page_max++;
         $page = 1;
-        $found = false;
+        //$found = false;
 
         for ($page; $page <= $page_max; $page++) {
             $url = 'https://note.com/api/v2/creators/' . $name . '/contents?kind=note&page=' . $page;
@@ -108,18 +108,25 @@ class Article extends Model
             $posts = json_decode($posts, true);
             $posts = $posts['data']['contents'];
 
-            for ($i = 0; $i < count($posts); $i++) {
-                $anarticle = $posts[$i];
-                if ($last_date >= $anarticle['publishAt']) {
-                    $found = true;
-                    break;
-                }
+            // for ($i = 0; $i < count($posts); $i++) {
+            //     $anarticle = $posts[$i];
+            //     if ($last_date >= $anarticle['publishAt']) {
+            //         $found = true;
+            //         break;
+            //     }
+            // }
+
+            $anarticle = $posts[count($posts) - 1];
+            if ($last_date >= $anarticle['publishAt']) {
+                break;
+            } else {
+                sleep(1);
             }
 
-            if ($found) {
-                break;
-            }
-            sleep(1);
+            // if ($found) {
+            //     break;
+            // }
+            //sleep(1);
         }
 
         for ($page; $page >= 1; $page--) {
@@ -180,7 +187,7 @@ class Article extends Model
     {
         $from = $request->datefrom;
         if (!isset($from)) {
-            $from = '2000-01-01';
+            $from = '2014-04-07';
         }
         $to = $request->dateto;
         if (!isset($to)) {

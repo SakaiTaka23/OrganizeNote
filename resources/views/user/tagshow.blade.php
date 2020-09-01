@@ -5,6 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
+            <a href="{{ route('tag.index') }}">タグ一覧へ戻る</a>
+
             <h2>タグ「{{$name}}」がついている記事一覧</h2>
 
             <table class="table table-hover mt-2">

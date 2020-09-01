@@ -17,13 +17,13 @@
                     <label for="datefrom" class="col-md-4 col-form-label text-md-right">{{ __('期間：')}}</label>
                     <div class="col-md-6">
                         <input id="datefrom" type="date" class="form-control" name="datefrom"
-                            value="{{ $dates['from'] ?? '' }}" autofocus>
+                            value="{{ $dates['from'] ?? '' }}" min="2014-04-07" autofocus>
                     </div>
 
                     <label for="dateto" class="col-md-4 col-form-label text-md-right">{{ __('〜')}}</label>
                     <div class="col-md-6">
                         <input id="dateto" type="date" class="form-control" name="dateto"
-                            value="{{ $dates['to'] ?? '' }}" autofocus>
+                            value="{{ $dates['to'] ?? '' }}" min="2014-04-07" autofocus>
                     </div>
 
                 </div>
