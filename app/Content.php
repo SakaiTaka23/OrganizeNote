@@ -32,7 +32,6 @@ class Content extends Model
     public function findContents($request)
     {
         $contents = Content::where('user_id', Auth::user()->id)->with('articles')->where('name', 'like', '%' . $request->content . '%')->orderBy('name', 'asc')->paginate(30);
-        //dd($contents[2]);
         return $contents;
     }
 }

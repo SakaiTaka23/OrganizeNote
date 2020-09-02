@@ -26,7 +26,7 @@ class Tag extends Model
 
     public function getTags()
     {
-        $tags = Tag::select('id', 'name')->where('user_id', Auth::user()->id)->withCount('articles')->orderBy('articles_count', 'desc')->orderBy('name', 'asc')->paginate(20);
+        $tags = Tag::select('id', 'name')->where('user_id', Auth::user()->id)->withCount('articles')->orderBy('articles_count', 'desc')->orderBy('name', 'asc')->paginate(30);
         return $tags;
     }
 

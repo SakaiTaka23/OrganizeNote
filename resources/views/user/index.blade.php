@@ -17,17 +17,18 @@
                     <label for="datefrom" class="col-md-4 col-form-label text-md-right">{{ __('期間：')}}</label>
                     <div class="col-md-6">
                         <input id="datefrom" type="date" class="form-control" name="datefrom"
-                            value="{{ $dates['from'] ?? '' }}" min="2014-04-07" autofocus>
+                            value="{{ $dates['from'] ?? '' }}" min="2014-04-07" max="{{ $today }}" autofocus>
                     </div>
 
                     <label for="dateto" class="col-md-4 col-form-label text-md-right">{{ __('〜')}}</label>
                     <div class="col-md-6">
                         <input id="dateto" type="date" class="form-control" name="dateto"
-                            value="{{ $dates['to'] ?? '' }}" min="2014-04-07" autofocus>
+                            value="{{ $dates['to'] ?? '' }}" min="2014-04-07" max="{{ $today }}" autofocus>
                     </div>
 
                 </div>
-                <button type="submit" class="btn btn-primary">検索</button>
+                <button type="submit" onclick="window.checkdate()" class="btn btn-primary">検索</button>
+                <button type="button" onclick="window.reset()" class="btn btn-danger">リセット</button>
             </form>
 
             <div class="d-flex justify-content-center">
@@ -58,3 +59,28 @@
     </div>
 </div>
 @endsection
+
+<script>
+    function reset()
+    {
+    console.log('reset local');
+    change = "";
+    console.log(document.getElementById('title').value);
+    document.getElementById('title').value = change;
+    document.getElementById('datefrom').value = "";
+    document.getElementById('dateto').value = "";
+    }
+    
+    function checkdate()
+    {
+    console.log('check');
+    from = document.getElementById('datefrom').value;
+    to = document.getElementById('dateto').value;
+    if (from > to)
+    {
+    tmp = from;
+    document.getElementById('datefrom').value = to;
+    document.getElementById('dateto').value = tmp;
+    }
+    }
+</script>

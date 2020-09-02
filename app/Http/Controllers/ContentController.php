@@ -18,7 +18,7 @@ class ContentController extends Controller
         $noteurl = Auth::user()->noteurl;
         $contents = new Content();
         $contents = $contents->getRandomContents();
-        return view('user.content',compact('contents','noteurl'));
+        return view('user.content', compact('contents', 'noteurl'));
     }
 
     public function search(Request $request)
@@ -27,6 +27,6 @@ class ContentController extends Controller
         $content = $request->content;
         $contents = new Content();
         $contents = $contents->findContents($request);
-        return view('user.contentsearch',compact('noteurl','content','contents'));
+        return view('user.contentsearch', compact('noteurl', 'content', 'contents'));
     }
 }

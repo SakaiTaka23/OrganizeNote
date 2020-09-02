@@ -18,7 +18,8 @@ class ArticleController extends Controller
         $articles = new Article();
         $articles = $articles->getIndex();
         $noteurl = Auth::user()->noteurl;
-        return view('user.index',compact('articles','noteurl'));
+        $today = date('Y-m-d');
+        return view('user.index',compact('articles','noteurl','today'));
     }
 
     public function search(Request $request)
@@ -29,7 +30,8 @@ class ArticleController extends Controller
         $noteurl = Auth::user()->noteurl;
         $dates['from'] = $request->datefrom;
         $dates['to'] = $request->dateto;
-        return view('user.index',compact('articles','noteurl','title','dates'));
+        $today = date('Y-m-d');
+        return view('user.index',compact('articles','noteurl','title','dates','today'));
     }
 
 }
