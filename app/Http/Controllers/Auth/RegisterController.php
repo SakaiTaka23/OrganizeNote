@@ -85,6 +85,7 @@ class RegisterController extends Controller
         $article = new Article;
         $article->first_time($user->noteurl);
 
-        return $this->registered($request, $user) ?: redirect($this->redirectPath());
+        //return $this->registered($request, $user) ?: redirect($this->redirectPath());
+        return redirect('user/index');
     }
 }

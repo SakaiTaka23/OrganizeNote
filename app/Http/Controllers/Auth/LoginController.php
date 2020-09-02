@@ -51,4 +51,9 @@ class LoginController extends Controller
         // ログイン後のリダイレクト
         return redirect()->intended($this->redirectPath());
     }
+
+    public function redirectPath()
+    {
+        return 'user/index';
+    }
 }
