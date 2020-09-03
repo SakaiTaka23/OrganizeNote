@@ -9,8 +9,8 @@
                 {{ $tags->appends(request()->input())->links() }}
             </div>
 
-            <table class="table table-hover mt-2">
-                <thead class="thead-light">
+            <table class="table table-borderless table-hover mt-2">
+                <thead>
                     <tr>
                         <th>使用タグ一覧</th>
                         <th>記事数</th>

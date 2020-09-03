@@ -1,0 +1,126 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+html,
+body {
+    background-color: #fff;
+    color: #222;
+    font-weight: 400;
+    height: 100vh;
+    margin-left: 8px;
+    margin-right: 8px;
+
+    font-family: -apple-system,
+        BlinkMacSystemFont,
+        Helvetica Neue,
+        Segoe UI, Hiragino Kaku Gothic ProN,
+        Hiragino Sans,
+        ヒラギノ角ゴ ProNW3,
+        Arial,
+        メイリオ,
+        Meiryo,
+        sans-serif;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 84px;
+}
+
+.links>a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+nav {
+    display: flex;
+    width: auto;
+    padding-left: 8px;
+    margin: 0, auto;
+    justify-content: flex-start;
+}
+
+a {
+    color: #787c7b;
+    height: 48px;
+    padding: 0 16px;
+    font-size: 14px;
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #000000;
+}
+
+.btn-outline-success {
+    color: #2cb696;
+    border-color: #2cb696;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #2cb696;
+    border-color: #2cb696;
+}
+
+.btn-success{
+    color: #fff;
+    background-color: #2cb696;
+    border-color: #2cb696;
+}
+
+.btn-success:hover{
+    color: #fff;
+    background-color: #2cb696;
+    border-color: #2cb696;
+}
+
+.logout{
+    height: auto;
+}
+
+.noteid-detail{
+    height: 20px;
+}

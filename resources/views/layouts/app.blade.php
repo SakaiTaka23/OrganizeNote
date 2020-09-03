@@ -11,27 +11,30 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>OraganizeNote</title>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/all.css') }}" rel="stylesheet">
+
     </head>
 
     <body>
         <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <nav class="navbar navbar-expand-md bg-white shadow-sm">
                 <div class="container">
 
                     @auth
 
                     <a class="navbar-brand" href="{{ route('index.index') }}">
+                        <img src="{{ asset('icon/icon-gray.svg') }}" width="30" height="30"
+                            class="d-inline-block align-top" alt="" loading="lazy">
                         {{ config('app.name', 'Laravel') }}
                     </a>
 
@@ -50,9 +53,11 @@
                     @endauth
 
                     @guest
-                        <a class="navbar-brand" href="{{ route('welcome') }}">
-                            {{ config('app.name', 'Laravel') }}
-                        </a>
+                    <a class="navbar-brand" href="{{ route('welcome') }}">
+                        <img src="{{ asset('icon/icon-gray.svg') }}" width="30" height="30"
+                            class="d-inline-block align-top" alt="" loading="lazy">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
                     @endguest
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -87,7 +92,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    <a class="dropdown-item logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>

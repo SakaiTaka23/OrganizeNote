@@ -5,12 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <a href="{{ route('tag.index') }}">タグ一覧へ戻る</a>
+            <a class="mb-2 pl-1" href="{{ route('tag.index') }}">タグ一覧へ戻る</a>
 
-            <h2>タグ「{{$name}}」がついている記事一覧</h2>
+            <h2 class="mb-4">タグ「 {{$name}} 」がついている記事一覧</h2>
 
-            <table class="table table-hover mt-2">
-                <thead class="thead-light">
+            <table class="table table-borderless table-hover mt-2">
+                <thead>
                     <tr>
                         <th>題名</th>
                         <th>作成日</th>
@@ -22,7 +22,7 @@
                     <tr>
                         <td>{{ $article->title }}</td>
                         <td>{{ $article->created_at->format('m/d H:i') }}</td>
-                        <td><a href="https://note.com/{{ $noteurl }}/n/{{ $article->key }}" target="_blank"
+                        <td class="row"><a href="https://note.com/{{ $noteurl }}/n/{{ $article->key }}" target="_blank"
                                 rel="noopener noreferrer">noteで開く</a></td>
                     </tr>
                     @endforeach

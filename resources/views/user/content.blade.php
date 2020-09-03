@@ -14,14 +14,12 @@
                             autofocus>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">検索</button>
+                    <button type="submit" class="btn btn-outline-success">検索</button>
                 </div>
             </form>
 
-            <a href="{{ route('content') }}">もっと見る</a>
-
-            <table class="table table-hover mt-2">
-                <thead class="thead-light">
+            <table class="table table-borderless table-hover mt-2">
+                <thead>
                     <tr>
                         <th>目次</th>
                         <th>元ページ</th>
@@ -35,7 +33,7 @@
                     <tr>
                         <td>{{ $content->name }}</td>
                         <td>{{ $article->title }}</td>
-                        <td><a href="https://note.com/{{ $noteurl }}/n/{{ $article->key }}" target="_blank"
+                        <td class="row"><a href="https://note.com/{{ $noteurl }}/n/{{ $article->key }}" target="_blank"
                                 rel="noopener noreferrer">noteで開く</a></td>
                     </tr>
 
@@ -43,6 +41,8 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <a class="d-flex justify-content-center btn btn-block" href="{{ route('content') }}">もっと見る</a>
 
         </div>
     </div>

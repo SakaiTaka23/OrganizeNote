@@ -45,6 +45,6 @@ class NoteURL implements Rule
      */
     public function message()
     {
-        return '無効なNoteURLです。';
+        return '無効なnote IDです。';
     }
 }

@@ -8,13 +8,13 @@
             <form method="GET" action="{{ route('searchArticle') }}">
                 <div class="form-group row">
 
-                    <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('題名：') }}</label>
+                    <label for="title" class="col-md-4 col-form-label text-md-right mb-2">{{ __('題名：') }}</label>
                     <div class="col-md-6">
                         <input id="title" type="text" class="form-control" name="title" value="{{ $title ?? '' }}"
                             autofocus>
                     </div>
 
-                    <label for="datefrom" class="col-md-4 col-form-label text-md-right">{{ __('期間：')}}</label>
+                    <label for="datefrom" class="col-md-4 col-form-label text-md-right mb-2">{{ __('期間：')}}</label>
                     <div class="col-md-6">
                         <input id="datefrom" type="date" class="form-control" name="datefrom"
                             value="{{ $dates['from'] ?? '' }}" min="2014-04-07" max="{{ $today }}" autofocus>
@@ -27,19 +27,22 @@
                     </div>
 
                 </div>
-                <button type="submit" onclick="window.checkdate()" class="btn btn-primary">検索</button>
-                <button type="button" onclick="window.reset()" class="btn btn-danger">リセット</button>
+
+                <div class="d-flex justify-content-around">
+                    <button type="button" onclick="window.reset()" class="btn btn-outline-danger">リセット</button>
+                    <button type="submit" onclick="window.checkdate()" class="btn btn-outline-success">検索</button>
+                </div>
             </form>
 
             <div class="d-flex justify-content-center">
                 {{ $articles->appends(request()->input())->links() }}
             </div>
 
-            <table class="table table-hover mt-2">
-                <thead class="thead-light">
+            <table class="table table-borderless table-hover mt-2">
+                <thead>
                     <tr>
                         <th>題名</th>
-                        <th>作成日</th>
+                        <th class="row">作成日</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -48,7 +51,7 @@
                     <tr>
                         <td>{{ $article->title }}</td>
                         <td>{{ $article->created_at->format('m/d H:i') }}</td>
-                        <td><a href="https://note.com/{{ $noteurl }}/n/{{ $article->key }}" target="_blank"
+                        <td class="row"><a href="https://note.com/{{ $noteurl }}/n/{{ $article->key }}" target="_blank"
                                 rel="noopener noreferrer">noteで開く</a></td>
                     </tr>
                     @endforeach
